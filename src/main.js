@@ -6,9 +6,11 @@ import router from './router'
 import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 import axios from 'axios'
+import echarts from 'echarts'
 
 Vue.use(ViewUI)
 Vue.prototype.$axios=axios
+Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
