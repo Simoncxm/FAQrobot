@@ -7,8 +7,10 @@ import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 import axios from 'axios'
 import echarts from 'echarts'
+import VueCookies from 'vue-cookies'
 
 Vue.use(ViewUI)
+Vue.use(VueCookies)
 Vue.prototype.$axios=axios
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
