@@ -88,15 +88,12 @@
     methods: {
       postText: function () {
         if (this.text != '' && this.url === '') {
+          let formData = new FormData();
+          formData.append('text', this.text);
           this.$axios({
             method:"post",
             url:"/api/",
-            data:{"text": this.text},
-            transformRequest: [function (data) {
-              data = qs.stringify(data);
-              return data;
-            }],
-            headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            data: formData
           }).then((res)=>{
             this.graphData = [];
             this.graphLink = [];
