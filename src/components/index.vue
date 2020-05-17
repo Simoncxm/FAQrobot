@@ -96,20 +96,21 @@
             url:"/api/",
             data: formData
           }).then((res)=>{
+            var arr = res.date.spos;
             this.graphData = [];
             this.graphLink = [];
-            for (var i in res.data.spos) {
+            for (var i in arr) {
               console.log(i);
-              if (!this.graphData.includes(i.object)) {
-                this.graphData.push({name: i.object});
+              if (!this.graphData.includes(arr[i].object)) {
+                this.graphData.push({name: arr[i].object});
               }
-              if (!this.graphData.includes(i.subject)) {
-                this.graphData.push({name: i.subject});
+              if (!this.graphData.includes(arr[i].subject)) {
+                this.graphData.push({name: arr[i].subject});
               }
               this.graphLink.push({
-                source: i.subject,
-                target: i.object,
-                name: i.predicate
+                source: arr[i].subject,
+                target: arr[i].object,
+                name: arr[i].predicate
               });
             }
             this.drawPic();
