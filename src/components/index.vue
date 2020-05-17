@@ -24,13 +24,14 @@
     </Row>
     <Row>
       <div v-if="show">
-        <div id="myChart" :style="{width: '600px', height: '300px'}"></div>
+        <div id="myChart" :style="{width: '600px', height: '600px', margin: '0 auto'}"></div>
         <br>
         <h3>提出问题</h3>
-        <Input v-model="question" clearable style="width: 300px" />
         <br>
-        答案：
-        {{answer}}
+        <Input v-model="question" search @on-search="getAnswer" enter-button style="width: 400px; margin: 0 auto" />
+        <br>
+        <br>
+        <h3>答案：</h3>{{answer}}
       </div>
     </Row>
   </div>
@@ -48,7 +49,7 @@
         question: '',
         answer: '',
         isButton: false,
-        show: false,
+        show: true,
         graphData: [{
           name: 'node01'
         }, {
@@ -82,11 +83,11 @@
       }
     },
     mounted() {
-      //this.drawPic();
+      this.drawPic();
       document.getElementById("docx").addEventListener("change", this.readFileInputEventAsArrayBuffer);
     },
     methods: {
-      postText: function () {
+      postText() {
         if (this.text != '' && this.url === '') {
           let formData = new FormData();
           formData.append('text', this.text);
@@ -135,7 +136,7 @@
         }
         //console.log(this.text);
       },
-      drawPic(){
+      drawPic() {
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart'))
         // 绘制图表
@@ -145,7 +146,8 @@
             type: 'graph',
             layout: 'force',
             symbolSize: 40,
-            roam: true,edgeSymbol: ['circle', 'arrow'],
+            roam: true,
+            edgeSymbol: ['circle', 'arrow'],
             edgeSymbolSize: [2, 10],
             edgeLabel: {
               normal: {
@@ -163,7 +165,7 @@
               }
             },
             force: {
-              repulsion: 2500,
+              repulsion: 1500,
               edgeLength: [10, 50]
             },
             draggable: true,
@@ -199,6 +201,16 @@
       },
       displayResult(result) {
         this.text = result.value;
+      },
+      getAnswer() {
+        if (this.question === '') {
+          alert("问题不能为空");
+        }
+        else {
+          this.$axios.get('/api/?question=' + this.question).then((res)=>{
+            this.answer = res.data.answer;
+          });
+        }
       }
     }
   }
