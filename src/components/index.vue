@@ -99,7 +99,7 @@
             console.log(res.data);
             this.graphData = [];
             this.graphLink = [];
-            for (i in res.data.spos) {
+            for (var i in res.data.spos) {
               if (!this.graphData.includes(i.object)) {
                 this.graphData.push({name: i.object});
               }
