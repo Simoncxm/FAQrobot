@@ -12,11 +12,11 @@
         <br>
         或上传.docx格式文件
         <input id="docx" type="file"/>
-        <br>
-        <br>
-        <br>
-        或直接输入网页url获取内容
-        <Input v-model="url" clearable/>
+<!--        <br>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        或直接输入网页url获取内容-->
+<!--        <Input v-model="url" clearable/>-->
         <br>
         <br>
         <Button @click="postText" :disabled="isButton">提交</Button>
