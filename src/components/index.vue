@@ -115,10 +115,10 @@
                 target: arr[i].object
               });
             }
+            this.show = true;
             this.drawPic();
             console.log(this.graphData);
             console.log(this.graphLink);
-            this.show = true;
             this.isButton = false;
           });
         }
