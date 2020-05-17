@@ -96,10 +96,10 @@
             url:"/api/",
             data: formData
           }).then((res)=>{
-            console.log(res.data.spos);
             this.graphData = [];
             this.graphLink = [];
             for (var i in res.data.spos) {
+              console.log(i);
               if (!this.graphData.includes(i.object)) {
                 this.graphData.push({name: i.object});
               }
