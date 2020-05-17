@@ -8,11 +8,13 @@ import 'view-design/dist/styles/iview.css'
 import axios from 'axios'
 import echarts from 'echarts'
 import VueCookies from 'vue-cookies'
+import mammoth from 'mammoth'
 
 Vue.use(ViewUI)
 Vue.use(VueCookies)
 Vue.prototype.$axios=axios
 Vue.prototype.$echarts = echarts
+Vue.prototype.$mammoth = mammoth
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

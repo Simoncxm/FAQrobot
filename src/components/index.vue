@@ -6,6 +6,7 @@
         <h1>知识图谱生成</h1>
         <h2>输入文章</h2>
         <Input v-model="text" type="textarea" :rows="5" placeholder="Enter something..." />
+        <input id="docx" type="file"></input>
         <br>
         <br>
         <Button @click="postText">提交</Button>
@@ -71,8 +72,7 @@
     },
     mounted() {
       //this.drawPic();
-      console.log(this.$cookies.isKey("username") + '\n');
-      console.log(this.$cookies.get("username"));
+      document.getElementById("docx").addEventListener("change", this.readFileInputEventAsArrayBuffer);
     },
     methods: {
       postText: function () {
@@ -152,6 +152,22 @@
             links: this.graphLink,
           }]
         });
+      },
+      readFileInputEventAsArrayBuffer(event) {
+        let that = this;
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(loadEvent) {
+          var arrayBuffer = loadEvent.target.result; //arrayBuffer
+          that.$mammoth
+            .extractRawText({ arrayBuffer: arrayBuffer })
+            .then(that.displayResult)
+            .done();
+        };
+        reader.readAsArrayBuffer(file);
+      },
+      displayResult(result) {
+        this.text = result.value;
       }
     }
   }
