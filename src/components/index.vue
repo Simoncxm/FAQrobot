@@ -100,7 +100,7 @@
             this.graphData = [];
             this.graphLink = [];
             for (var i in arr) {
-              console.log(i);
+              console.log(arr[i]);
               if (!this.graphData.includes(arr[i].object)) {
                 this.graphData.push({name: arr[i].object});
               }
