@@ -96,7 +96,7 @@
             url:"/api/",
             data: formData
           }).then((res)=>{
-            console.log(res.data);
+            console.log(res.data.spos);
             this.graphData = [];
             this.graphLink = [];
             for (var i in res.data.spos) {
