@@ -90,11 +90,8 @@
         if (this.text != '' && this.url === '') {
           this.$axios({
             method:"post",
-            url:"http://localhost:5002/",
-
-            data:{
-              text:this.text
-            }
+            url:"/api/",
+            data: this.text
           }).then((res)=>{
             this.graphData = [];
             this.graphLink = [];
