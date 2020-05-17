@@ -25,14 +25,14 @@
     <Row>
       <div v-if="show">
         <div id="myChart" :style="{width: '600px', height: '600px', margin: '0 auto'}"></div>
-        <br>
-        <h3>提出问题</h3>
-        <br>
-        <Input v-model="question" search @on-search="getAnswer" enter-button style="width: 400px; margin: 0 auto" />
-        <br>
-        <br>
-        <h3>答案：</h3>{{answer}}
       </div>
+      <br>
+      <h3>提出问题</h3>
+      <br>
+      <Input v-model="question" search @on-search="getAnswer" enter-button style="width: 400px; margin: 0 auto" />
+      <br>
+      <br>
+      <h3>答案：</h3>{{answer}}
     </Row>
   </div>
 </template>
