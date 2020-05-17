@@ -91,7 +91,12 @@
           this.$axios({
             method:"post",
             url:"/api/",
-            data:{"text": this.text}
+            data:{"text": this.text},
+            transformRequest: [function (data) {
+              data = qs.stringify(data);
+              return data;
+            }],
+            headers:{'Content-Type':'application/x-www-form-urlencoded'}
           }).then((res)=>{
             this.graphData = [];
             this.graphLink = [];
