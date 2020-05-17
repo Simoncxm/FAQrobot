@@ -33,6 +33,12 @@
       <br>
       <br>
       <h3>答案：</h3>{{answer}}
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
     </Row>
   </div>
 </template>
