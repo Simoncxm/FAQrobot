@@ -16,10 +16,10 @@
         <br>
         <br>
         或直接输入网页url获取内容
-        <Input v-model="url" clearabl/>
+        <Input v-model="url" clearable/>
         <br>
         <br>
-        <Button @click="postText">提交</Button>
+        <Button @click="postText" :disabled="isButton">提交</Button>
       </Col>
     </Row>
     <Row>
@@ -32,7 +32,6 @@
         答案：
         {{answer}}
       </div>
-
     </Row>
   </div>
 </template>
@@ -47,7 +46,8 @@
         text: '',
         url: '',
         question: '',
-        answer: 'nmsl',
+        answer: '',
+        isButton: false,
         show: false,
         graphData: [{
           name: 'node01'
@@ -90,14 +90,16 @@
         if (this.text != '' && this.url === '') {
           let formData = new FormData();
           formData.append('text', this.text);
+          this.isButton = true;
           this.$axios({
             method:"post",
             url:"/api/",
             data: formData
           }).then((res)=>{
+            console.log(res.data);
             this.graphData = [];
             this.graphLink = [];
-            for (i in res.data) {
+            for (i in res.data.spos) {
               if (!this.graphData.includes(i.object)) {
                 this.graphData.push({name: i.object});
               }
@@ -112,7 +114,7 @@
             }
             this.drawPic();
             this.show = true;
-            //console.log(res.data);
+            this.isButton = false;
           });
         }
         else if (this.url != '' && this.text === '') {

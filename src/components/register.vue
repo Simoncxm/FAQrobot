@@ -18,8 +18,7 @@
         <Input v-model="repassword" password type="password" style="width: 280px" @input="change" />
         <br>
         <br>
-        <Button v-if="avalable" @click="register()">注册</Button>
-        <Button v-else disabled>注册</Button>
+        <Button :disabled="avalableFn" @click="register()">注册</Button>
       </Col>
     </Row>
   </div>
@@ -38,13 +37,18 @@
         avalable: false
       }
     },
+    computed: {
+      avalableFn() {
+        return !this.avalable;
+      }
+    },
     methods: {
       register: function () {
         console.log(this.username + " " + this.password);
         this.$router.push('/login');
       },
       change: function () {
-        this.avalable = (this.password === this.repassword) && this.username != '';
+        this.avalable = (this.password === this.repassword) && this.username != '' && this.password != '';
         console.log(this.avalable);
       }
     }
