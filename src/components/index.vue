@@ -49,7 +49,7 @@
         question: '',
         answer: '',
         isButton: false,
-        show: true,
+        show: false,
         graphData: [{
           name: 'node01'
         }, {
@@ -83,7 +83,7 @@
       }
     },
     mounted() {
-      this.drawPic();
+      //this.drawPic();
       document.getElementById("docx").addEventListener("change", this.readFileInputEventAsArrayBuffer);
     },
     methods: {
@@ -207,7 +207,7 @@
           alert("问题不能为空");
         }
         else {
-          this.$axios.get('/api/?question=' + this.question).then((res)=>{
+          this.$axios.get('/api2/?question=' + this.question).then((res)=>{
             this.answer = res.data.answer;
           });
         }
