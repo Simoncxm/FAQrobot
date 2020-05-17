@@ -97,14 +97,16 @@
             data: formData
           }).then((res)=>{
             var arr = res.data.spos;
+            let dataList = [];
             this.graphData = [];
             this.graphLink = [];
             for (var i in arr) {
-              console.log(arr[i]);
-              if (!this.graphData.includes(arr[i].object)) {
+              if (!dataList.includes(arr[i].object)) {
+                dataList.push(arr[i].object);
                 this.graphData.push({name: arr[i].object});
               }
-              if (!this.graphData.includes(arr[i].subject)) {
+              if (!dataList.includes(arr[i].subject)) {
+                dataList.push(arr[i].subject);
                 this.graphData.push({name: arr[i].subject});
               }
               this.graphLink.push({
@@ -113,6 +115,8 @@
                 name: arr[i].predicate
               });
             }
+            console.log(this.graphData);
+            console.log(this.graphLink);
             this.drawPic();
             this.show = true;
             this.isButton = false;

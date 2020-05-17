@@ -49,7 +49,6 @@
       },
       change: function () {
         this.avalable = (this.password === this.repassword) && this.username != '' && this.password != '';
-        console.log(this.avalable);
       }
     }
   }
