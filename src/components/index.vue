@@ -207,7 +207,7 @@
           alert("问题不能为空");
         }
         else {
-          this.$axios.get('/api2/?question=' + this.question).then((res)=>{
+          this.$axios.get('/ap2/?question=' + this.question).then((res)=>{
             this.answer = res.data.answer;
           });
         }
