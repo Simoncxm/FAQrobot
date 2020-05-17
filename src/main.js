@@ -4,7 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ViewUI from 'view-design'
+import VueResource from 'vue-resource'
 import 'view-design/dist/styles/iview.css'
+import qs from 'qs';
 import axios from 'axios'
 import echarts from 'echarts'
 import VueCookies from 'vue-cookies'
@@ -12,7 +14,9 @@ import mammoth from 'mammoth'
 
 Vue.use(ViewUI)
 Vue.use(VueCookies)
-Vue.prototype.$axios=axios
+Vue.use(VueResource)
+Vue.prototype.$qs = qs
+Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
 Vue.prototype.$mammoth = mammoth
 Vue.config.productionTip = false

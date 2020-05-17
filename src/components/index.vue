@@ -4,9 +4,16 @@
     <Row>
       <Col span="12" offset="6">
         <h1>知识图谱生成</h1>
+        <br>
         <h2>输入文章</h2>
-        <Input v-model="text" type="textarea" :rows="5" placeholder="Enter something..." />
-        <input id="docx" type="file"></input>
+        <br>
+        <Input v-model="text" type="textarea" :autosize="{minRows: 5,maxRows: 20}" placeholder="Enter something..." />
+        或上传.docx格式文件
+        <input id="docx" type="file"/>
+        <br>
+        <br>
+        或输入网页url
+        <Input v-model="url" search @on-search="loadUrl"/>
         <br>
         <br>
         <Button @click="postText">提交</Button>
@@ -35,6 +42,7 @@
     data() {
       return {
         text: '',
+        url: '',
         question: '',
         answer: 'nmsl',
         show: false,
@@ -168,6 +176,13 @@
       },
       displayResult(result) {
         this.text = result.value;
+      },
+      loadUrl: function () {
+        this.$http.get(this.url).then(function(res) {
+          console.log(res)
+        },function(res) {
+          console.log(res)
+        })
       }
     }
   }
