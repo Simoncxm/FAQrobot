@@ -8,12 +8,15 @@
         <h2>输入文章</h2>
         <br>
         <Input v-model="text" type="textarea" :autosize="{minRows: 5,maxRows: 20}" placeholder="Enter something..." />
+        <br>
+        <br>
         或上传.docx格式文件
         <input id="docx" type="file"/>
         <br>
         <br>
-        或输入网页url
-        <Input v-model="url" search @on-search="loadUrl"/>
+        <br>
+        或直接输入网页url获取内容
+        <Input v-model="url" clearabl/>
         <br>
         <br>
         <Button @click="postText">提交</Button>
@@ -84,32 +87,44 @@
     },
     methods: {
       postText: function () {
-        this.$axios({
-          method:"post",
-          url:"/api/postText",
-          data:{
-            text:this.text
-          }
-        }).then((res)=>{
-          this.graphData = [];
-          this.graphLink = [];
-          for (i in res.data) {
-            if (!this.graphData.includes(i.object)) {
-              this.graphData.push({name: i.object});
+        if (this.text != '' && this.url === '') {
+          this.$axios({
+            method:"post",
+            url:"http://localhost:5002/",
+
+            data:{
+              text:this.text
             }
-            if (!this.graphData.includes(i.subject)) {
-              this.graphData.push({name: i.subject});
+          }).then((res)=>{
+            this.graphData = [];
+            this.graphLink = [];
+            for (i in res.data) {
+              if (!this.graphData.includes(i.object)) {
+                this.graphData.push({name: i.object});
+              }
+              if (!this.graphData.includes(i.subject)) {
+                this.graphData.push({name: i.subject});
+              }
+              this.graphLink.push({
+                source: i.subject,
+                target: i.object,
+                name: i.predicate
+              });
             }
-            this.graphLink.push({
-              source: i.subject,
-              target: i.object,
-              name: i.predicate
-            });
-          }
-          this.drawPic();
-          this.show = true;
-          //console.log(res.data);
-        });
+            this.drawPic();
+            this.show = true;
+            //console.log(res.data);
+          });
+        }
+        else if (this.url != '' && this.text === '') {
+          console.log(this.url);
+        }
+        else if (this.url != '' && this.text != '') {
+          alert("不能同时输入多个来源");
+        }
+        else {
+          alert("请输入内容");
+        }
         //console.log(this.text);
       },
       drawPic(){
@@ -176,13 +191,6 @@
       },
       displayResult(result) {
         this.text = result.value;
-      },
-      loadUrl: function () {
-        this.$http.get(this.url).then(function(res) {
-          console.log(res)
-        },function(res) {
-          console.log(res)
-        })
       }
     }
   }
