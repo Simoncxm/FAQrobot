@@ -110,14 +110,14 @@
                 this.graphData.push({name: arr[i].subject});
               }
               this.graphLink.push({
+                name: arr[i].predicate,
                 source: arr[i].subject,
-                target: arr[i].object,
-                name: arr[i].predicate
+                target: arr[i].object
               });
             }
+            this.drawPic();
             console.log(this.graphData);
             console.log(this.graphLink);
-            this.drawPic();
             this.show = true;
             this.isButton = false;
           });
