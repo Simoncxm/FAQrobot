@@ -29,7 +29,7 @@
       <br>
       <h3>提出问题</h3>
       <br>
-      <Input v-model="question" search @on-search="getAnswer" enter-button style="width: 400px; margin: 0 auto" />
+      <Input v-model="question" search @on-search="getAnswer" enter-button :disabled="isAnswer" style="width: 400px; margin: 0 auto" />
       <br>
       <br>
       <h3>答案：</h3>{{answer}}
@@ -49,6 +49,7 @@
         question: '',
         answer: '',
         isButton: false,
+        isAnswer: false,
         show: false,
         graphData: [{
           name: 'node01'
@@ -207,8 +208,10 @@
           alert("问题不能为空");
         }
         else {
+          this.isAnswer = true;
           this.$axios.get('/ap2/?question=' + this.question).then((res)=>{
             this.answer = res.data.answer;
+            this.isAnswer = false;
           });
         }
       }
