@@ -116,9 +116,11 @@
               });
             }
             this.show = true;
-            this.drawPic();
-            console.log(this.graphData);
-            console.log(this.graphLink);
+            this.$nextTick(function () {
+              this.drawPic();
+            })
+            //console.log(this.graphData);
+            //console.log(this.graphLink);
             this.isButton = false;
           });
         }
