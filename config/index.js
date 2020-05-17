@@ -22,7 +22,7 @@ module.exports = {
         target: 'http://localhost:5003',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/'   //路径重写  前端/flask-api 对应 后端/
+          '^/api2': '/'   //路径重写  前端/flask-api 对应 后端/
         }
       }
     },
