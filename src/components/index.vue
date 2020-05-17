@@ -91,7 +91,7 @@
           this.$axios({
             method:"post",
             url:"/api/",
-            data: this.text
+            data:{"text": this.text}
           }).then((res)=>{
             this.graphData = [];
             this.graphLink = [];
