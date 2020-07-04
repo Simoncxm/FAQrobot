@@ -12,7 +12,7 @@
           <router-link :to="{path:'/login'}">登录</router-link>
         </MenuItem>
         <MenuItem name="3" v-if="!isLogin">
-          <Icon type="ios-person-add" />
+          <Icon type="md-person-add" />
           <router-link :to="{path:'/register'}">注册</router-link>
         </MenuItem>
         <MenuItem name="4" v-if="isLogin">
