@@ -1,45 +1,47 @@
 <template>
   <div>
-    <c-header></c-header>
-    <Row>
-      <Col span="12" offset="6">
-        <h1>知识图谱生成</h1>
-        <br>
-        <h2>输入文章</h2>
-        <br>
-        <Input v-model="text" type="textarea" :autosize="{minRows: 5,maxRows: 20}" placeholder="Enter something..." />
-        <br>
-        <br>
-        或上传.docx格式文件
-        <input id="docx" type="file"/>
-<!--        <br>-->
-<!--        <br>-->
-<!--        <br>-->
-<!--        或直接输入网页url获取内容-->
-<!--        <Input v-model="url" clearable/>-->
-        <br>
-        <br>
-        <Button @click="postText" :disabled="isButton">提交</Button>
-      </Col>
-    </Row>
-    <Row>
-      <div v-if="show">
-        <div id="myChart" :style="{width: '600px', height: '600px', margin: '0 auto'}"></div>
-      </div>
-      <br>
-      <h3>提出问题</h3>
-      <br>
-      <Input v-model="question" search @on-search="getAnswer" enter-button :disabled="isAnswer" style="width: 400px; margin: 0 auto" />
-      <br>
-      <br>
-      <h3>答案：</h3>{{answer}}
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    </Row>
+    <div class="layout">
+      <Layout>
+        <c-header></c-header>
+        <Content :style="{padding: '0 50px'}">
+          <Row>
+            <Col span="12" offset="6">
+              <h1>知识图谱生成</h1>
+              <br>
+              <h2>输入文章</h2>
+              <br>
+              <Input v-model="text" type="textarea" :autosize="{minRows: 5,maxRows: 20}" placeholder="Enter something..." />
+              <br>
+              <br>
+              或上传.docx格式文件
+              <input id="docx" type="file"/>
+              <br>
+              <br>
+              <Button @click="postText" :disabled="isButton">提交</Button>
+            </Col>
+          </Row>
+          <Row>
+            <div v-if="show">
+              <div id="myChart" :style="{width: '600px', height: '600px', margin: '0 auto'}"></div>
+            </div>
+            <br>
+            <h3>提出问题</h3>
+            <br>
+            <Input v-model="question" search @on-search="getAnswer" enter-button :disabled="isAnswer" style="width: 400px; margin: 0 auto" />
+            <br>
+            <br>
+            <h3>答案：</h3>{{answer}}
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </Row>
+        </Content>
+        <Footer class="layout-footer-center">2020 &copy; Fengrubei</Footer>
+      </Layout>
+    </div>
   </div>
 </template>
 
@@ -224,3 +226,31 @@
     }
   }
 </script>
+
+<style scoped>
+  .layout{
+    border: 1px solid #d7dde4;
+    background: #f5f7f9;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .layout-logo{
+    width: 100px;
+    height: 30px;
+    background: #5b6270;
+    border-radius: 3px;
+    float: left;
+    position: relative;
+    top: 15px;
+    left: 20px;
+  }
+  .layout-nav{
+    width: 420px;
+    margin: 0 auto;
+    margin-right: 20px;
+  }
+  .layout-footer-center{
+    text-align: center;
+  }
+</style>
